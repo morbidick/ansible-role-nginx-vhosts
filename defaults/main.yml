@@ -1,0 +1,8 @@
+---
+nginx_vhosts: []
+nginx_vhosts_base_template: "https"
+nginx_vhosts_sites_available_folder: "{{ nginx_sites_available_folder | default('/etc/nginx/sites-available')}}"
+nginx_vhosts_sites_enabled_folder: "{{ nginx_sites_enabled_folder | default('/etc/nginx/sites-enabled')}}"
+nginx_vhosts_sites_default_folder: "/var/www/{{ item.host }}"
+letsencrypt_key_path: "/etc/letsencrypt/live/{{ item.host }}/privkey.pem"
+letsencrypt_cert_path: "/etc/letsencrypt/live/{{ item.host }}/fullchain.pem"

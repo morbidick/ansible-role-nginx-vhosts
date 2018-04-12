@@ -1,0 +1,22 @@
+---
+- name: create vhosts config
+  template:
+    dest: "{{ nginx_vhosts_sites_available_folder }}/{{ item.host }}.conf"
+    src: "{{ nginx_vhosts_base_template }}.conf"
+  notify: reload nginx
+  with_items: "{{ nginx_vhosts }}"
+
+- name: ensure static web roots exist
+  file:
+    path: "{{ nginx_vhosts_sites_default_folder }}"
+    state: directory
+  with_items: "{{ nginx_vhosts }}"
+  when: item.type == "static"
+
+- name: activate vhosts
+  file:
+    src: "{{ nginx_vhosts_sites_available_folder }}/{{ item.host }}.conf"
+    dest: "{{ nginx_vhosts_sites_enabled_folder }}/{{ item.host }}.conf"
+    state: link
+  notify: reload nginx
+  with_items: "{{ nginx_vhosts }}"
