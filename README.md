@@ -31,13 +31,15 @@ See [the full example](./webserver.md) for a complete playbook.
     # redirect to another domain
     - host: redirect.example.com
       type: redirect
-      target: mysite.com
+      target: https://mysite.com
     # redirect to the www subdomain
     - host: example2.com
-      type: redirect-www
+      type: redirect
+      target: www
     # redirect to the domain without www
     - host: www.example.com
-      type: redirect-no-www
+      type: redirect
+      target: no-www
 ````
 
 ## Role variables
