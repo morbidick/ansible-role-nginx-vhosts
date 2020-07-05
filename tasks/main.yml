@@ -18,5 +18,14 @@
     src: "{{ nginx_vhosts_sites_available_folder }}/{{ item.host }}.conf"
     dest: "{{ nginx_vhosts_sites_enabled_folder }}/{{ item.host }}.conf"
     state: link
+  when: item.type != "disabled"
+  notify: reload nginx
+  with_items: "{{ nginx_vhosts }}"
+
+- name: disable vhosts
+  file:
+    path: "{{ nginx_vhosts_sites_enabled_folder }}/{{ item.host }}.conf"
+    state: absent
+  when: item.type == "disabled"
   notify: reload nginx
   with_items: "{{ nginx_vhosts }}"

@@ -40,6 +40,9 @@ See [the full example](./webserver.md) for a complete playbook.
     - host: www.example.com
       type: redirect
       target: no-www
+    # remove an upstream
+    - host: www.example.com
+      type: disabled
 ````
 
 ## Role variables
