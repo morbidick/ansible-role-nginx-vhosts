@@ -1,5 +1,5 @@
 ---
 - name: reload nginx
   service:
-    name: "{{ nginx_identifier }}"
+    name: nginx
     state: reloaded
