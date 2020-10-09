@@ -25,9 +25,12 @@ See [the full example](./webserver.md) for a complete playbook.
       type: static
     # to proxy an upstream
     - host: proxy.example.com
-      type: proxy
-      # use type proxy-ws for websocket support
+      type: proxy # use type proxy-ws for websocket support
       target: http://localhost:3000
+    # to proxy an upstream with dynamic IP
+    - host: proxy.example.com
+      type: proxy
+      dynamic_target: http://example.local:3000
     # redirect to another domain
     - host: redirect.example.com
       type: redirect
