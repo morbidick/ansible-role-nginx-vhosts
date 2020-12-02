@@ -43,6 +43,11 @@ See [the full example](./webserver.md) for a complete playbook.
     # remove an upstream
     - host: www.example.com
       type: disabled
+    # extra_conf can be added to all types
+    - host: example.com
+      type: static
+      extra_conf: |
+        client_max_body_size 50m;
 ````
 
 ## Role variables
